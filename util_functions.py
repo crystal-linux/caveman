@@ -2,7 +2,7 @@
 import os, sys, random, string
 
 # Pip
-import asyncio, requests, youtube_dl, discord
+import asyncio, requests, discord
 
 # Me
 from global_config import configboi
