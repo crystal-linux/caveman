@@ -31,7 +31,7 @@ DEFAULT_STATUS_TEXT = confmgr.get("DEFAULT_STATUS_TEXT")
 
 UNLOAD_COGS = confmgr.getaslist("UNLOAD_COGS")
 
-OWNER = confmgr.get("OWNER")
+OWNER = confmgr.getasint("OWNER")
 # <-------------- End --------------------->
 
 # <--------------Colors Start-------------->

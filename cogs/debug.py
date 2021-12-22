@@ -53,7 +53,6 @@ class Debug(commands.Cog):
         else:
             await ctx.send(embed=errmsg("Oops", wrongperms("restart")))
 
-    # TODO: Move to admin file?
     @commands.command()
     async def update(self, ctx):
         """Update bot from Git, and restart (Mod. only)"""
