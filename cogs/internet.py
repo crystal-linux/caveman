@@ -5,7 +5,6 @@ import urllib
 import discord
 from discord.ext import commands
 import asyncio
-import gmplot
 
 from util_functions import *
 from global_config import configboi

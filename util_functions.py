@@ -30,6 +30,8 @@ DEFAULT_STATUS_TYPE = confmgr.get("DEFAULT_STATUS_TYPE")
 DEFAULT_STATUS_TEXT = confmgr.get("DEFAULT_STATUS_TEXT")
 
 UNLOAD_COGS = confmgr.getaslist("UNLOAD_COGS")
+
+OWNER = confmgr.get("OWNER")
 # <-------------- End --------------------->
 
 # <--------------Colors Start-------------->
@@ -52,9 +54,6 @@ green_light = 0xA1EE33
 white = 0xF9F9F6
 cream = 0xFFDAB9
 # <--------------Colors End-------------->
-
-WHITELIST = []
-
 
 def strip_dangerous(text):
     remove = [";", "&&", "&", '"']
@@ -136,3 +135,7 @@ def getstamp():
 def wrongperms(command):
     syslog.log("System", "Someone just failed to run: '" + command + "'")
     return WRONG_PERMS.replace("{command}", command)
+
+def fail(msg):
+    syslog.log("System ERROR", msg)
+    sys.exit(1)

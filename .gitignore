@@ -1,3 +1,7 @@
+# Custom
+system_log.txt*
+.cavetoken
+
 # ---> Python
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,6 +1,3 @@
-# Token is BOTTOKEN in env-vars
-# E.G. "BOTTOKEN=<something> python3 combo.py"
-
 # Standard python imports
 import os, string, unicodedata, sys, re, random, time, datetime, subprocess, json, traceback
 import urllib.parse
@@ -158,10 +155,10 @@ if UNLOAD_COGS is not None:
             except:
                 syslog.log("Main", "Failed to remove '" + item + "'")
 
-if os.environ["bottoken"] != "":
-    bot.run(os.environ["bottoken"])
+
+if check(".cavetoken"):
+    token = open(".cavetoken").read().strip()
 else:
-    print(
-        "You need to call this file with a variable 'bottoken' set to your bot token."
-    )
-    sys.exit(1)
+    fail("No token found in .cavetoken")
+
+bot.run(token)

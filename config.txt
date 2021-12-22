@@ -13,13 +13,16 @@ DEFAULT_STATUS_TYPE:playing
 # These are currently the only substitutions
 # - {number_users}
 # - {guild_count}
-DEFAULT_STATUS_TEXT:ooga booga w/ {number_users}
+DEFAULT_STATUS_TEXT:ooga booga w/ {number_users} friends
 
 # Any default cogs you don't want to load:
 # Example: UNLOAD_COGS:Internet,Speak
 # Or maybe more likely: UNLOAD_COGS:Shells
 # Blank is fine, too
 UNLOAD_COGS:
+
+# Who gets all log messages, and run extra-privileged commands
+OWNER:117445905572954121
 
 # Text for messages:
 # Note {command} is the only substitution allowed here (we do auto-mention the user)
