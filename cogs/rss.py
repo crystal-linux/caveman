@@ -93,20 +93,15 @@ class RSS(commands.Cog):
                     self.dolog("Updated cache")
 
                     d = feedparser.parse(new)
-                    hadNew = False
 
                     for item in d.entries:
+                        pkgn = str(item['title'])
+                        if " " in pkgn:
+                            pkgn = pkgn.split(" ")[0]
                         for tgt in self.package_names:
-                            if tgt in str(item['title']):
+                            if tgt in pkgn:
                                 await self.send("Package change: `" + str(item['title']) + "`")
-                                hadNew = True
                                 break
-                    
-                    if not hadNew:
-                        await self.send("No package changes to report :)")
-
-                else:
-                    await self.send("No package changes to report :)")
         except Exception as e:
             syslog.log("RSS ERROR", str(e))
 
