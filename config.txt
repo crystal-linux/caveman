@@ -44,8 +44,5 @@ REFRESH_TIME:3600
 # Feed source(s)
 FEED_URLS:archlinux.org/feeds/packages/
 
-# Crystal URL(s)
-GITEA_URLS:https://git.getcryst.al/crystal/packages-any,https://git.getcryst.al/crystal/packages-x86_64
-
 # Channel to send notifications
 PACKAGE_CHANNEL:900844916974977125
