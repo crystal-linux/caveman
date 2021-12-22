@@ -22,6 +22,7 @@ class Status(commands.Cog):
 
     def cog_unload(self):
         self.status_task.cancel()
+        self.uptime_logger.cancel()
 
     async def setDefaultStatus(self):
         ac_type = None
