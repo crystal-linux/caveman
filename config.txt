@@ -1,0 +1,35 @@
+# This is a comment!
+# Note: In the code, if the data type is not supported,
+# you'll have to deal yourself (by editing global_config.py likely)
+
+# Also, at the moment, these aren't type safe, so if you use this file in other cogs,
+# make sure to use the correct getter function for the type you expect it to be. (and cast!)
+
+# General bot stuff
+
+# Types: watching, listening, playing
+DEFAULT_STATUS_TYPE:playing
+
+# These are currently the only substitutions
+# - {number_users}
+# - {guild_count}
+DEFAULT_STATUS_TEXT:ooga booga w/ {number_users}
+
+# Any default cogs you don't want to load:
+# Example: UNLOAD_COGS:Internet,Speak
+# Or maybe more likely: UNLOAD_COGS:Shells
+# Blank is fine, too
+UNLOAD_COGS:
+
+# Text for messages:
+# Note {command} is the only substitution allowed here (we do auto-mention the user)
+WRONG_PERMS:You're not a special snowflake, so you can't run `{command}`
+
+# {username} is the only one here
+NEW_MEMBER:Welcome, {username}
+
+# and {channel} is the only one here
+INTRO_CHANNEL:You should go to {channel}, since it's your first time here.
+
+# Should the owner get a DM when the bot restarts
+OWNER_DM_RESTART:True
