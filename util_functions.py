@@ -19,27 +19,12 @@ syslog = BotLogger("system_log.txt")
 # .get is string
 VER = confmgr.get("VER")
 
-PASTE_BASE = confmgr.get("PASTE_BASE")
-PASTE_URL_BASE = confmgr.get("PASTE_URL_BASE")
-
 HELP_LOC = confmgr.get("HELP_LOC")
 
 WRONG_PERMS = confmgr.get("WRONG_PERMS")
 
 NEW_MEMBER = confmgr.get("NEW_MEMBER")
 INTRO_CHANNEL = confmgr.get("INTRO_CHANNEL")
-
-# and a list (vv)
-IMAGE_RESPONSES = confmgr.getaslist("IMAGE_RESPONSES")
-
-# and a boolean (vv)
-DO_IMAGE_RESPONSE = confmgr.getasbool("DO_IMAGE_RESPONSES")
-IMAGE_RESPONSE_PROB = confmgr.getasint("IMAGE_RESPONSE_PROB")
-
-# list of integers
-MOD_IDS = confmgr.getasintlist("MOD_IDS")
-# and an int (vv)
-OWNER = confmgr.getasint("OWNER")
 
 DEFAULT_STATUS_TYPE = confmgr.get("DEFAULT_STATUS_TYPE")
 DEFAULT_STATUS_TEXT = confmgr.get("DEFAULT_STATUS_TEXT")
@@ -115,19 +100,6 @@ def imgbed(title, type, dat):
         e.set_image(url="attachment://" + dat)
     return e
 
-
-# Youtube Stuff
-async def getytvid(link, songname):
-    syslog.log("Util-GetYTvid", "We're starting a download session")
-    syslog.log("Util-GetYTvid", "Target filename is: " + songname)
-
-    await run_command_shell(
-        "cd bin && python3 download_one.py " + link + " " + songname + " && cd ../"
-    )
-
-    syslog.log("Util-GetYTvid", "All done!")
-
-
 # Simple file wrappers
 def check(fn):
     if os.path.exists(fn):
@@ -146,7 +118,6 @@ def get(fn):
         with open(fn) as f:
             return f.read()
 
-
 def ensure(fn):
     if not check(fn):
         os.makedirs(fn, exist_ok=True)
@@ -162,75 +133,6 @@ def getstamp():
     else:
         return ""
 
-
-def iswhitelisted(word):
-    if word in WHITELIST:
-        return True
-    else:
-        return False
-
-
-# WTF IS THIS?
-def purifylink(content):
-    sp1 = content.split("http")[1]
-    sp2 = sp1.split(" ")[0]
-    return "http" + sp2
-
-
 def wrongperms(command):
     syslog.log("System", "Someone just failed to run: '" + command + "'")
     return WRONG_PERMS.replace("{command}", command)
-
-
-# Maybe add: https://docs.python.org/3/library/shlex.html#shlex.quote ?
-async def run_command_shell(command):
-    """Run command in subprocess (shell)."""
-
-    # Create subprocess
-    process = await asyncio.create_subprocess_shell(
-        command, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
-    )
-
-    # Status
-    print("Started:", command, "(pid = " + str(process.pid) + ")", flush=True)
-
-    # Wait for the subprocess to finish
-    stdout, stderr = await process.communicate()
-
-    # Progress
-    if process.returncode == 0:
-        print("Done:", command, "(pid = " + str(process.pid) + ")", flush=True)
-        # Result
-        result = stdout.decode().strip()
-    else:
-        print("Failed:", command, "(pid = " + str(process.pid) + ")", flush=True)
-        # Result
-        result = stderr.decode().strip()
-
-    # Return stdout
-    return result
-
-
-def paste(text):
-    N = 25
-    fn = (
-        "".join(
-            random.choice(
-                string.ascii_uppercase + string.digits + string.ascii_lowercase
-            )
-            for _ in range(N)
-        )
-        + ".txt"
-    )
-    with open(PASTE_BASE + fn, "w") as f:
-        f.write(text)
-    return PASTE_URL_BASE + fn
-
-
-def getgeoip(ip):
-    url = "https://freegeoip.app/json/" + ip
-    headers = {"accept": "application/json", "content-type": "application/json"}
-
-    response = requests.request("GET", url, headers=headers)
-    dat = response.json()
-    return dat

@@ -3,7 +3,6 @@ from discord.ext import commands
 
 from util_functions import *
 from global_config import configboi
-from server_config import serverconfig
 
 # Hopefully we'll never need logging here
 
@@ -14,13 +13,6 @@ class Debug(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.confmgr = configboi("config.txt", False)
-        self.sconf = serverconfig()
-
-    @commands.command()
-    async def resetgd(self, ctx):
-        if ctx.message.author.id == ctx.message.guild.owner_id:
-            self.sconf.rs(str(ctx.message.guild.id))
-            await ctx.send(":thumbsup:")
 
     @commands.command()
     async def checkcog(self, ctx, *, n):

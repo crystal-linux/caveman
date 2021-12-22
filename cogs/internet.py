@@ -10,16 +10,6 @@ import gmplot
 from util_functions import *
 from global_config import configboi
 
-from server_config import serverconfig
-
-from better_profanity import profanity
-
-profanity.load_censor_words(
-    whitelist_words=open("data/whitelist_words.txt").read().split("\n")
-)
-
-profanity.add_censor_words(open("data/blacklist_words.txt").read().split("\n"))
-
 # Fun internet things
 class Internet(commands.Cog):
     """Useful tools on the interwebs"""
@@ -27,7 +17,6 @@ class Internet(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.confmgr = configboi("config.txt", False)
-        self.sconf = serverconfig()
 
     async def getasjson(self, url):
         try:

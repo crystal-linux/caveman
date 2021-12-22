@@ -17,21 +17,16 @@ from discord.ext import commands
 from pretty_help import DefaultMenu, PrettyHelp
 
 # Other pip packages
-from PIL import Image, ImageDraw, ImageFont
-from better_profanity import profanity
 import asyncio
 import requests
 
 # My own classes n such
 from global_config import configboi
 from util_functions import *
-from server_config import serverconfig
 
 if os.path.sep == "\\":
     print("This bot is only supported on UNIX-like systems. Aborting.")
     sys.exit(1)
-
-sconf = serverconfig()
 
 intents = discord.Intents.default()
 intents.members = True
