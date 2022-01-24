@@ -1,7 +1,7 @@
 from discord.ext import tasks, commands
 import feedparser,os
 
-CHAN = 825480016045408329
+CHAN = 842491569176051712
 ROLE = 825474723948265474
 WATCHED = "grub,arch-install-scripts,base,filesystem,lsb-release,neofetch,pfetch"
 
