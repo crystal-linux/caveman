@@ -1,6 +1,2 @@
-py-cord[voice]
-discord-pretty-help
-requests
-asyncio
-requests
 feedparser
+py-cord
