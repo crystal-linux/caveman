@@ -8,7 +8,7 @@ bot.add_cog(Packages(bot))
 
 
 @bot.command()
-async def distrohop(self, ctx, *, count=None):
+async def distrohop(ctx, *, count=None):
     """Count another miku distrohop"""
     if os.path.exists("miku_distrohops.txt"):
         with open("miku_distrohops.txt", "r") as f:
