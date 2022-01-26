@@ -16,7 +16,7 @@ async def distrohop(ctx, *, count=None):
     else:
         distrohops = 0
     if count != None:
-        distrohops += count
+        distrohops += int(count)
     with open("miku_distrohops.txt", "w") as f:
         f.write(str(distrohops))
     await ctx.send("Miku distrohops: " + str(distrohops))
