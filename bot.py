@@ -36,7 +36,7 @@ async def distrohop(ctx, *, count=None):
 
 @bot.event
 async def on_ready():
-    chan = await bot.get_channel(842491569176051712)
+    chan = bot.get_channel(842491569176051712)
     cogs_dir = "cogs"
     for extension in [
         f.replace(".py", "") for f in os.listdir(cogs_dir) if os.isfile(join(cogs_dir, f))
