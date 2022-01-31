@@ -6,9 +6,6 @@ import discord
 from discord.ext import commands
 from pretty_help import DefaultMenu, PrettyHelp
 
-# Custom
-from task import Packages
-
 intents = discord.Intents.default()
 intents.members = True
 
