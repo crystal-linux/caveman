@@ -1,5 +1,11 @@
+# Pip
 from discord.ext import tasks, commands
+
+# Stdlib
 import feedparser,os
+
+# Custom
+from fancy import *
 
 CHAN = 842491569176051712
 ROLE = 825474723948265474
@@ -59,9 +65,9 @@ class Packages(commands.Cog):
                 print(str(p))
                 print("-"*10)
                 msg = "`" + p.name + "` is now `" + p.ver + "`"
-                await self.bot.get_channel(CHAN).send(msg)
-        #else:
-        #    await self.bot.get_channel(CHAN).send("No new packages")
+                await self.bot.get_channel(CHAN).send(embed=infmsg("New package",msg))
+        else:
+            await self.bot.get_channel(CHAN).send(embed=infmsg("Notice","No new packages","Lucky for us :)"))
 
     @check.before_loop
     async def before_check(self):

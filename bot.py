@@ -7,6 +7,9 @@ import discord
 from discord.ext import commands
 from pretty_help import DefaultMenu, PrettyHelp
 
+# Custom
+from fancy import *
+
 intents = discord.Intents.default()
 intents.members = True
 
@@ -33,7 +36,7 @@ async def distrohop(ctx, *, count=None):
         distrohops += int(count)
     with open("miku_distrohops.txt", "w") as f:
         f.write(str(distrohops))
-    await ctx.send("Miku distrohops: " + str(distrohops))
+    await ctx.send(embed=infmsg("Distrohops","Miku distrohops: `" + str(distrohops) + "`", "Good lord."))
 
 @bot.event
 async def on_ready():
@@ -43,8 +46,8 @@ async def on_ready():
         try:
             bot.load_extension(cogs_dir + "." + extension)
         except (Exception) as e:
-            await chan.send(f"Failed to load extension `{extension}`, reason was:")
-            await chan.send("```" + str(e) + "```")
+            await chan.send(embed=errmsg("Load error",f"Failed to load extension `{extension}`, traceback below."))
+            await chan.send(embed=errmsg("Traceback","```" + str(e) + "```"))
 
     await chan.send("Started/restarted at: `" + str(datetime.now()) + "`")
 
