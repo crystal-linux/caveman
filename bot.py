@@ -43,7 +43,8 @@ async def on_ready():
         try:
             bot.load_extension(cogs_dir + "." + extension)
         except (Exception) as e:
-            await chan.send(f"Failed to load extension `{extension}`.")
+            await chan.send(f"Failed to load extension `{extension}`, reason was:")
+            await chan.send("```" + str(e) + "```")
 
     await chan.send("Started/restarted at: `" + str(datetime.now()) + "`")
 
