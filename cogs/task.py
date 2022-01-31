@@ -66,8 +66,8 @@ class Packages(commands.Cog):
                 print("-"*10)
                 msg = "`" + p.name + "` is now `" + p.ver + "`"
                 await self.bot.get_channel(CHAN).send(embed=infmsg("New package",msg))
-        else:
-            await self.bot.get_channel(CHAN).send(embed=infmsg("Notice","No new packages","Lucky for us :)"))
+        #else:
+        #    await self.bot.get_channel(CHAN).send(embed=infmsg("Notice","No new packages","Lucky for us :)"))
 
     @check.before_loop
     async def before_check(self):
