@@ -39,7 +39,7 @@ async def on_ready():
     chan = bot.get_channel(842491569176051712)
     cogs_dir = "cogs"
     for extension in [
-        f.replace(".py", "") for f in os.listdir(cogs_dir) if os.path.isfile(join(cogs_dir, f))
+        f.replace(".py", "") for f in os.listdir(cogs_dir) if os.path.isfile(os.path.join(cogs_dir, f))
     ]:
         try:
             bot.load_extension(cogs_dir + "." + extension)
