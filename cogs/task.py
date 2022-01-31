@@ -67,3 +67,6 @@ class Packages(commands.Cog):
     async def before_check(self):
         print('waiting for bot to be ready...')
         await self.bot.wait_until_ready()
+
+def setup(bot):
+    bot.add_cog(Packages(bot))
