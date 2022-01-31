@@ -1,11 +1,27 @@
-import discord,os
-from discord.ext import commands
+# Stdlib
+import os
 
+# Pip
+import discord
+from discord.ext import commands
+from pretty_help import DefaultMenu, PrettyHelp
+
+# Custom
 from task import Packages
 
-bot = commands.Bot(";")
-bot.add_cog(Packages(bot))
+intents = discord.Intents.default()
+intents.members = True
 
+bot = commands.Bot(
+    command_prefix=commands.when_mentioned_or(";"),
+    description="Bang rocks together make package tracker bot",
+    intents=intents
+)
+
+helpmenu = DefaultMenu("◀️", "▶️", "❌")
+bot.help_command = PrettyHelp(
+    no_category="Commands", navigation=helpmenu, color=discord.Colour.blurple()
+)
 
 @bot.command()
 async def distrohop(ctx, *, count=None):
@@ -20,6 +36,19 @@ async def distrohop(ctx, *, count=None):
     with open("miku_distrohops.txt", "w") as f:
         f.write(str(distrohops))
     await ctx.send("Miku distrohops: " + str(distrohops))
+
+@bot.event
+async def on_ready():
+    chan = await bot.get_channel(842491569176051712)
+    cogs_dir = "cogs"
+    for extension in [
+        f.replace(".py", "") for f in os.listdir(cogs_dir) if os.isfile(join(cogs_dir, f))
+    ]:
+        try:
+            bot.load_extension(cogs_dir + "." + extension)
+        except (Exception) as e:
+            await chan.send(f"Failed to load extension {extension}.")
+    await chan.send("Started/restarted at: `" + getstamp() + "`")
 
 if not os.path.exists(os.environ["HOME"] + "/.cavetoken"):
     print("No token found")
