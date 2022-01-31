@@ -1,5 +1,6 @@
 # Stdlib
 import os
+from datetime import datetime
 
 # Pip
 import discord
@@ -38,14 +39,13 @@ async def distrohop(ctx, *, count=None):
 async def on_ready():
     chan = bot.get_channel(842491569176051712)
     cogs_dir = "cogs"
-    for extension in [
-        f.replace(".py", "") for f in os.listdir(cogs_dir) if os.path.isfile(os.path.join(cogs_dir, f))
-    ]:
+    for extension in [f.replace(".py", "") for f in os.listdir(cogs_dir) if os.path.isfile(os.path.join(cogs_dir, f))]:
         try:
             bot.load_extension(cogs_dir + "." + extension)
         except (Exception) as e:
-            await chan.send(f"Failed to load extension {extension}.")
-    await chan.send("Started/restarted at: `" + getstamp() + "`")
+            await chan.send(f"Failed to load extension `{extension}`.")
+
+    await chan.send("Started/restarted at: `" + str(datetime.now()) + "`")
 
 if not os.path.exists(os.environ["HOME"] + "/.cavetoken"):
     print("No token found")
