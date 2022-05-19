@@ -24,20 +24,6 @@ bot.help_command = PrettyHelp(
     no_category="Commands", navigation=helpmenu, color=discord.Colour.blurple()
 )
 
-@bot.command()
-async def distrohop(ctx, *, count=None):
-    """Count another miku distrohop"""
-    if os.path.exists("miku_distrohops.txt"):
-        with open("miku_distrohops.txt", "r") as f:
-            distrohops = int(f.read())
-    else:
-        distrohops = 0
-    if count != None:
-        distrohops += int(count)
-    with open("miku_distrohops.txt", "w") as f:
-        f.write(str(distrohops))
-    await ctx.send(embed=infmsg("Distrohops","Miku distrohops: `" + str(distrohops) + "`", "Good lord."))
-
 @bot.event
 async def on_ready():
     chan = bot.get_channel(842491569176051712)
